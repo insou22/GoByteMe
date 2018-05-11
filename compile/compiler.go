@@ -2,12 +2,12 @@ package compile
 
 import (
 	"strconv"
-	"co.insou/gobyteme/oplookup"
 	"co.insou/gobyteme/instruct"
+	"co.insou/gobyteme/opcodes"
 )
 
 func Compile(parts []string) []int32 {
-	instruct.InitialzeInstructions()
+	opcodes.InitialzeInstructions()
 
 	ignore := int32(0)
 
@@ -23,9 +23,10 @@ func Compile(parts []string) []int32 {
 			continue
 		}
 
-		inst := oplookup.InstructionFromName(val)
+		inst := instruct.InstructionFromName(val)
 		ignore += int32(inst.Length() - 1)
-		code[i] = int32(inst.Opcode())
+		opcode, _ := inst.Info()
+		code[i] = int32(opcode)
 	}
 
 	return code

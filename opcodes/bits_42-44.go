@@ -1,12 +1,21 @@
-package instruct
+package opcodes
 
 import (
 	"co.insou/gobyteme/vm"
+	"co.insou/gobyteme/instruct"
 )
 
-type And struct {}
-type Or struct {}
-type Xor struct {}
+type And struct {
+	instruct.DefaultInstruction
+}
+
+type Or struct {
+	instruct.DefaultInstruction
+}
+
+type Xor struct {
+	instruct.DefaultInstruction
+}
 
 func (And) Execute() {
 	a1 := vm.GetStack().Pop()
@@ -29,39 +38,14 @@ func (Xor) Execute() {
 	vm.GetStack().Push(vm.Bool2Int(a1 != a2))
 }
 
-func (And) Opcode() uint32 {
-	return 42
+func (And) Info() (opcode uint32, name string) {
+	return 42, "and"
 }
 
-func (Or) Opcode() uint32 {
-	return 43
+func (Or) Info() (opcode uint32, name string) {
+	return 43, "or"
 }
 
-func (Xor) Opcode() uint32 {
-	return 44
+func (Xor) Info() (opcode uint32, name string) {
+	return 44, "xor"
 }
-
-func (And) Name() string {
-	return "and"
-}
-
-func (Or) Name() string {
-	return "or"
-}
-
-func (Xor) Name() string {
-	return "xor"
-}
-
-func (And) Length() uint32 {
-	return 1
-}
-
-func (Or) Length() uint32 {
-	return 1
-}
-
-func (Xor) Length() uint32 {
-	return 1
-}
-

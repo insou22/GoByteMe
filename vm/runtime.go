@@ -1,7 +1,7 @@
 package vm
 
 import (
-	"co.insou/gobyteme/oplookup"
+	"co.insou/gobyteme/instruct"
 )
 
 var register = NewRegister()
@@ -32,14 +32,14 @@ func Begin() {
 	codeLen := len(code)
 
 	for running && int(pc) < codeLen {
-		inst := oplookup.InstructionFromOpcode(uint32(Next()))
+		inst := instruct.InstructionFromOpcode(uint32(Next()))
 		attemptExecute(inst)
 	}
 
 	result = ResultSuccessEof
 }
 
-func attemptExecute(instruction oplookup.Instruction) {
+func attemptExecute(instruction instruct.Instruction) {
 	defer func() {
 		if r := recover(); r != nil {
 			result = ResultFailed

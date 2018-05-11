@@ -1,7 +1,7 @@
-package instruct
+package opcodes
 
 import (
-	"co.insou/gobyteme/oplookup"
+	"co.insou/gobyteme/instruct"
 )
 
 func InitialzeInstructions() {
@@ -52,6 +52,6 @@ func InitialzeInstructions() {
 	initialise(Xor{})
 }
 
-func initialise(instruction oplookup.Instruction) {
-	oplookup.Initialise(instruction)
+func initialise(instruction instruct.Instruction) {
+	instruct.Initialise(instruction)
 }

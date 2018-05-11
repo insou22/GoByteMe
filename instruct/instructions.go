@@ -1,4 +1,4 @@
-package oplookup
+package instruct
 
 var opcode2Inst = make(map[uint32]Instruction)
 var name2Inst = make(map[string]Instruction)
@@ -12,6 +12,7 @@ func InstructionFromName(name string) Instruction {
 }
 
 func Initialise(instruction Instruction) {
-	opcode2Inst[instruction.Opcode()] = instruction
-	name2Inst[instruction.Name()] = instruction
+	opcode, name := instruction.Info()
+	opcode2Inst[opcode] = instruction
+	name2Inst[name] = instruction
 }
