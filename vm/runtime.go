@@ -9,7 +9,7 @@ var stack = NewStack()
 var code []int32 = nil
 
 var pc uint32 = 0
-var running bool = false
+var running = false
 var result uint8
 
 const(
