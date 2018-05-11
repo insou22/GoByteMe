@@ -15,7 +15,7 @@ var result uint8
 const(
 	ResultSuccessExit = 0
 	ResultSuccessEof  = 1
-	ResultFailed		= 2
+	ResultFailed	  = 2
 )
 
 func LoadCode(c []int32) {
