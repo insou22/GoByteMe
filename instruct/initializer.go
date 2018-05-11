@@ -1,0 +1,57 @@
+package instruct
+
+import (
+	"co.insou/gobyteme/oplookup"
+)
+
+func InitialzeInstructions() {
+	initialise(Exit{})
+	initialise(Store0{})
+	initialise(Store1{})
+	initialise(Store2{})
+	initialise(Store3{})
+	initialise(Store{})
+	initialise(Load0{})
+	initialise(Load1{})
+	initialise(Load2{})
+	initialise(Load3{})
+	initialise(Load{})
+	initialise(Sum{})
+	initialise(Sub{})
+	initialise(Mul{})
+	initialise(Div{})
+	initialise(Mod{})
+	initialise(Goto{})
+	initialise(GotoS{})
+	initialise(Print{})
+	initialise(Const0{})
+	initialise(Const1{})
+	initialise(Const2{})
+	initialise(Const3{})
+	initialise(Const{})
+	initialise(Incr{})
+	initialise(Decr{})
+	initialise(CmpGt{})
+	initialise(CmpGe{})
+	initialise(CmpLt{})
+	initialise(CmpLe{})
+	initialise(GotoIf{})
+	initialise(GotoSIf{})
+	initialise(Equal{})
+	initialise(Not{})
+	initialise(PrintA{})
+	initialise(PrintAS{})
+	initialise(Print1{})
+	initialise(Stores0{})
+	initialise(Stores1{})
+	initialise(Stores2{})
+	initialise(Stores3{})
+	initialise(Stores{})
+	initialise(And{})
+	initialise(Or{})
+	initialise(Xor{})
+}
+
+func initialise(instruction oplookup.Instruction) {
+	oplookup.Initialise(instruction)
+}

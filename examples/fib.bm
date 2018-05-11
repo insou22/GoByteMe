@@ -1,0 +1,23 @@
+;======================================================
+
+const0 stores0 print1   ; 0-2 INITIALISE F(n-1) = 0 IN [0] ; PRINT INITIAL NUMBER
+const1 store1           ; 3-4 INITIALISE F(n) = 1   IN [1]
+
+load1     ; 5
+stores2   ; 6 STORE F(n) IN [2]
+print1    ; 7 PRINT F(n-1)
+
+load0     ; 8
+load1     ; 9 LOAD F(n-1), F(n) TO COMPUTE F(n+1)
+sum       ; 10 SUM F(n-1) + F(n)
+store1    ; 11 STORE F(n+1)
+load2     ; 12
+store0    ; 13 SET F(n) to F(n-1)
+load1     ; 14
+load0     ; 15 PREVENT OVERFLOW
+cmpge     ; 16
+gotoif 5  ; 17-18 GOTO IF NOT OVERFLOWED
+
+          ; 19 Bytes
+
+;======================================================
