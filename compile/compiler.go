@@ -25,7 +25,7 @@ func Compile(parts []string) []int32 {
 
 		inst := instruct.InstructionFromName(val)
 		ignore += int32(inst.Length() - 1)
-		opcode, _ := inst.Info()
+		_, opcode, _ := inst.Info()
 		code[i] = int32(opcode)
 	}
 

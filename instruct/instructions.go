@@ -12,7 +12,7 @@ func InstructionFromName(name string) Instruction {
 }
 
 func Initialise(instruction Instruction) {
-	opcode, name := instruction.Info()
+	_, opcode, name := instruction.Info()
 	opcode2Inst[opcode] = instruction
 	name2Inst[name] = instruction
 }

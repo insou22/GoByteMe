@@ -9,58 +9,52 @@ type Load0 struct {
 	instruct.DefaultInstruction
 }
 
+func (Load0) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.GetRegister().GetData(0))
+	},6, "load0"
+}
+
+
 type Load1 struct {
 	instruct.DefaultInstruction
 }
+
+func (Load1) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.GetRegister().GetData(1))
+	},7, "load1"
+}
+
 
 type Load2 struct {
 	instruct.DefaultInstruction
 }
 
+func (Load2) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.GetRegister().GetData(2))
+	},8, "load2"
+}
+
+
 type Load3 struct {
 	instruct.DefaultInstruction
 }
+
+func (Load3) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.GetRegister().GetData(3))
+	},9, "load3"
+}
+
 
 type Load struct {
 	instruct.TwoByteInstruction
 }
 
-func (Load0) Execute() {
-	vm.GetStack().Push(vm.GetRegister().GetData(0))
-}
-
-func (Load1) Execute() {
-	vm.GetStack().Push(vm.GetRegister().GetData(1))
-}
-
-func (Load2) Execute() {
-	vm.GetStack().Push(vm.GetRegister().GetData(2))
-}
-
-func (Load3) Execute() {
-	vm.GetStack().Push(vm.GetRegister().GetData(3))
-}
-
-func (Load) Execute() {
-	vm.GetStack().Push(vm.GetRegister().GetData(vm.Next()))
-}
-
-func (Load0) Info() (opcode uint32, name string) {
-	return 6, "load0"
-}
-
-func (Load1) Info() (opcode uint32, name string) {
-	return 7, "load1"
-}
-
-func (Load2) Info() (opcode uint32, name string) {
-	return 8, "load2"
-}
-
-func (Load3) Info() (opcode uint32, name string) {
-	return 9, "load3"
-}
-
-func (Load) Info() (opcode uint32, name string) {
-	return 10, "load"
+func (Load) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.GetRegister().GetData(vm.Next()))
+	},10, "load"
 }

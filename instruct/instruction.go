@@ -2,8 +2,7 @@ package instruct
 
 type Instruction interface {
 
-	Execute()
-	Info() (opcode uint32, name string)
+	Info() (ex func(), opcode uint32, name string)
 	Length() uint32
 
 }

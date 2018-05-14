@@ -9,22 +9,19 @@ type Goto struct {
 	instruct.TwoByteInstruction
 }
 
+func (Goto) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.SetPC(uint32(vm.Next()))
+	},16, "goto"
+}
+
+
 type GotoS struct {
 	instruct.DefaultInstruction
 }
 
-func (Goto) Execute() {
-	vm.SetPC(uint32(vm.Next()))
-}
-
-func (GotoS) Execute() {
-	vm.SetPC(uint32(vm.GetStack().Pop()))
-}
-
-func (Goto) Info() (opcode uint32, name string) {
-	return 16, "goto"
-}
-
-func (GotoS) Info() (opcode uint32, name string) {
-	return 17, "gotos"
+func (GotoS) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.SetPC(uint32(vm.GetStack().Pop()))
+	},17, "gotos"
 }

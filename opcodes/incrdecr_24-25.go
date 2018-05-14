@@ -9,22 +9,19 @@ type Incr struct {
 	instruct.DefaultInstruction
 }
 
+func (Incr) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.GetStack().Pop() + 1)
+	},24, "incr"
+}
+
+
 type Decr struct {
 	instruct.DefaultInstruction
 }
 
-func (Incr) Execute() {
-	vm.GetStack().Push(vm.GetStack().Pop() + 1)
-}
-
-func (Decr) Execute() {
-	vm.GetStack().Push(vm.GetStack().Pop() - 1)
-}
-
-func (Incr) Info() (opcode uint32, name string) {
-	return 24, "incr"
-}
-
-func (Decr) Info() (opcode uint32, name string) {
-	return 25, "decr"
+func (Decr) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.GetStack().Pop() - 1)
+	},25, "decr"
 }

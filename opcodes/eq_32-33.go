@@ -9,22 +9,19 @@ type Equal struct {
 	instruct.DefaultInstruction
 }
 
+func (Equal) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.Bool2Int(vm.GetStack().Pop() == vm.GetStack().Pop()))
+	},32, "equal"
+}
+
+
 type Not struct {
 	instruct.DefaultInstruction
 }
 
-func (Equal) Execute() {
-	vm.GetStack().Push(vm.Bool2Int(vm.GetStack().Pop() == vm.GetStack().Pop()))
-}
-
-func (Not) Execute() {
-	vm.GetStack().Push(vm.Bool2Int(!vm.Int2Bool(vm.GetStack().Pop())))
-}
-
-func (Equal) Info() (opcode uint32, name string) {
-	return 32, "equal"
-}
-
-func (Not) Info() (opcode uint32, name string) {
-	return 33, "not"
+func (Not) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.GetStack().Push(vm.Bool2Int(!vm.Int2Bool(vm.GetStack().Pop())))
+	},33, "not"
 }

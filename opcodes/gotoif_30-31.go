@@ -9,31 +9,28 @@ type GotoIf struct {
 	instruct.TwoByteInstruction
 }
 
+func (GotoIf) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		index := vm.Next()
+
+		if vm.Int2Bool(vm.GetStack().Pop()) {
+			vm.SetPC(uint32(index))
+		}
+	},30, "gotoif"
+}
+
+
 type GotoSIf struct {
 	instruct.DefaultInstruction
 }
 
-func (GotoIf) Execute() {
-	index := vm.Next()
+func (GotoSIf) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		cmp := vm.GetStack().Pop()
+		loc := vm.GetStack().Pop()
 
-	if vm.Int2Bool(vm.GetStack().Pop()) {
-		vm.SetPC(uint32(index))
-	}
-}
-
-func (GotoSIf) Execute() {
-	cmp := vm.GetStack().Pop()
-	loc := vm.GetStack().Pop()
-
-	if vm.Int2Bool(cmp) {
-		vm.SetPC(uint32(loc))
-	}
-}
-
-func (GotoIf) Info() (opcode uint32, name string) {
-	return 30, "gotoif"
-}
-
-func (GotoSIf) Info() (opcode uint32, name string) {
-	return 31, "gotosif"
+		if vm.Int2Bool(cmp) {
+			vm.SetPC(uint32(loc))
+		}
+	},31, "gotosif"
 }

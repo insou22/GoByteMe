@@ -1,19 +1,17 @@
 package opcodes
 
 import (
-	"co.insou/gobyteme/vm"
 	"co.insou/gobyteme/instruct"
+	"co.insou/gobyteme/vm"
 )
 
 type Exit struct {
 	instruct.DefaultInstruction
 }
 
-func (Exit) Execute() {
-	vm.SetResult(vm.ResultSuccessExit)
-	vm.SetRunning(false)
-}
-
-func (Exit) Info() (opcode uint32, name string) {
-	return 0, "exit"
+func (Exit) Info() (ex func(), opcode uint32, name string) {
+	return func() {
+		vm.SetResult(vm.ResultSuccessExit)
+		vm.SetRunning(false)
+	},0, "exit"
 }

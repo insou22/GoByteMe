@@ -48,7 +48,8 @@ func attemptExecute(instruction instruct.Instruction) {
 		}
 	}()
 
-	instruction.Execute()
+	ex, _, _ := instruction.Info()
+	ex()
 }
 
 func Next() int32 {
